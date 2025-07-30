@@ -12,7 +12,6 @@ Route::get('/', function () {
     // ];
 
     $array = Book::all();
-    //Select * FROM books
-    dd($array);
+    //Select * FROM books 
     return view('welcome', ['libri' => $array]);
 });
