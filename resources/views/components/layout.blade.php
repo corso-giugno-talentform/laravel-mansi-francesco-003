@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sito</a>
+            <a class="navbar-brand" href="{{ route('pages.homepage') }}">{{ env('APP_NAME') }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,11 +21,34 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Homepage</a>
+                        <a class="nav-link" href="{{ route('pages.homepage') }}">Homepage</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('books.index') }}">Gestione Libri</a>
+                    </li>
+                    @guest
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Accedi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+
+                                <button class="nav-link" type="submit">Logout</button>
+                            </form>
+
+                        </li>
+                    @endguest
 
                 </ul>
+                @auth
+                    Ciao, {{ Auth::user()->name }}
+                @endauth
             </div>
         </div>
     </nav>
