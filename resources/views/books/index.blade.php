@@ -6,7 +6,10 @@
          </div>
          <ul>
              @foreach ($books as $book)
-                 <li>{{ $book->name }}</li>
+                 <li>
+                     <img style="width:20px" src="{{ $book->image ? Storage::url($book->image) : '/images/default.png' }}"
+                         alt="" srcset="">{{ $book->name }}
+                 </li>
              @endforeach
          </ul>
      </section>

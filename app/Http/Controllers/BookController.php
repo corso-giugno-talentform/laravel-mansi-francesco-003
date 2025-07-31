@@ -34,7 +34,8 @@ class BookController extends Controller
         Book::create([
             'name' => $request->name,
             'year' => $request->year,
-            'page' => $request->page
+            'page' => $request->page,
+            'image' => $request->file('image')->store('cover', 'public')
         ]);
         // Book::create($data);
 

@@ -32,7 +32,8 @@ class StoreBookRequest extends FormRequest
     {
         return [
             'name.required' => 'AOho manca il dato.',
-            'name.max' => 'Troppi caratteri'
+            'name.max' => 'Troppi caratteri',
+            'year.integer' => 'scrivi un numero'
         ];
     }
 }
