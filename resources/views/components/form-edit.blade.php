@@ -3,29 +3,22 @@
         @if (session('success'))
             <x-alert color="alert-success"> {{ session('success') }}</x-alert>
         @endif
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <x-errors-all />
         {{ $slot }}
-        <form class="" action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="" action="{{ route('books.update', ['book' => $book]) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
-
+            @method('PUT')
             <div class="mb-3">
                 <label for="inputName" class="form-label">Nome Libro</label>
                 <input type="text" class="form-control @error('name') is-invalid    @enderror" id="inputName"
-                    name="name" value="{{ old('name') }}">
+                    name="name" value="{{ $book->name }}">
 
 
             </div>
             <div class="mb-3">
                 <label for="inputSurName" class="form-label">Anno di Scrittura</label>
-                <input type="text" class="form-control" id="inputSurName" name="year" value="{{ old('year') }}">
+                <input type="text" class="form-control" id="inputSurName" name="year" value="{{ $book->year }}">
                 @error('year')
                     <div class="alert alert-danger mt-2" role="alert">
                         {{ $message }}
@@ -34,7 +27,7 @@
             </div>
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Pagine del libro</label>
-                <input type="text" class="form-control" id="inputEmail" name="page" value="{{ old('page') }}">
+                <input type="text" class="form-control" id="inputEmail" name="page" value="{{ $book->page }}">
                 @error('page')
                     <div class="alert alert-danger mt-2" role="alert">
                         {{ $message }}
@@ -42,11 +35,12 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="formFile" class="form-label">Immagine Cover</label>
-                <input class="form-control" type="file" id="formFile" name="image">
+                <img style="height:100px" src="{{ Storage::url($book->image) }}" alt="">
+                <label for="formFile" class="form-label">Immagine Cover Attuale</label>
+                <input class="form-control" type="file" id="formFile" name="image" value="{{ $book->image }}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Salva</button>
+            <button type="submit" class="btn btn-primary">Aggiorna</button>
         </form>
     </div>
 </div>

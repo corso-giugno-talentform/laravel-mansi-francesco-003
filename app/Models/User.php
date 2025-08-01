@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    // public function checkIfAdmin()
+    // {
+    //     if ($this->email == 'admin@ciao.it') {
+    //         return true;
+    //     } else {
+    //         return $this->is_admin;
+    //     }
+    // }
 }

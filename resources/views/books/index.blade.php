@@ -35,13 +35,20 @@
 
                                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-                                     <a href="#" class="btn btn-primary me-md-2">
+                                     <a href="{{ route('books.show', ['book' => $book]) }}"
+                                         class="btn btn-primary me-md-2">
                                          Visualizza
                                      </a>
-                                     <a href="#" class="btn btn-warning me-md-2">
+                                     <a href="{{ route('books.edit', ['book' => $book]) }}"
+                                         class="btn btn-warning me-md-2">
                                          Modifica
                                      </a>
-                                     <button type="button" class="btn btn-danger me-md-2">Elimina</button>
+                                     <form action="{{ route('books.destroy', ['book' => $book]) }}" method="POST">
+                                         @csrf
+                                         @method('DELETE')
+                                         <button type="submit" class="btn btn-danger me-md-2">Elimina</button>
+
+                                     </form>
                                  </div>
                              </td>
                          </tr>

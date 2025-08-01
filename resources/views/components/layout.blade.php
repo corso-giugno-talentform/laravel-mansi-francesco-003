@@ -46,6 +46,7 @@
                     @endguest
 
                 </ul>
+
                 @auth
                     Ciao, {{ Auth::user()->name }}
                 @endauth

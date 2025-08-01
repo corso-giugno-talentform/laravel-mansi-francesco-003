@@ -1,3 +1,3 @@
 <x-layout>
-    <x-form />
+    <x-form-create />
 </x-layout>
