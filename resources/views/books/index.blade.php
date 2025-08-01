@@ -43,11 +43,39 @@
                                          class="btn btn-warning me-md-2">
                                          Modifica
                                      </a>
-                                     <form action="{{ route('books.destroy', ['book' => $book]) }}" method="POST">
+
+                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                         data-bs-target="#book-{{ $book->id }}">
+                                         Elimina
+                                     </button>
+                                 </div>
+                                 <!-- Button trigger modal -->
+
+
+                                 <!-- Modal -->
+                                 <div class="modal fade" id="book-{{ $book->id }}" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                     <form action="{{ route('books.destroy', ['book' => $book]) }}" method="POST"
+                                         class="modal-dialog">
                                          @csrf
                                          @method('DELETE')
-                                         <button type="submit" class="btn btn-danger me-md-2">Elimina</button>
+                                         <div class="modal-content">
+                                             <div class="modal-header">
+                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Attento! Operazione
+                                                     non Reversibile!</h1>
+                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                     aria-label="Close"></button>
+                                             </div>
+                                             <div class="modal-body">
+                                                 Sat per eliminare il libro: {{ $book->name }}
 
+                                             </div>
+                                             <div class="modal-footer">
+                                                 <button type="button" class="btn btn-secondary"
+                                                     data-bs-dismiss="modal">Close</button>
+                                                 <button type="submit" class="btn btn-danger">SI, Elimina</button>
+                                             </div>
+                                         </div>
                                      </form>
                                  </div>
                              </td>
