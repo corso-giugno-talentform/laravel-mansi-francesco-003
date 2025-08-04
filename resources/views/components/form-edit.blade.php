@@ -35,6 +35,21 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="inputAuthor" class="form-label">Scegli Autore</label>
+
+                <select name="author_id" class="form-select" id="inputAuthor">
+
+
+                    <option @if (!$book->author_id) selected @endif>Seleziona un Autore</option>
+                    @foreach ($authors as $author)
+                        <option @if ($author->id == $book->author_id) selected @endif value="{{ $author->id }}">
+                            {{ $author->firstname . ' ' . $author->lastname }}
+                        </option>
+                    @endforeach
+
+                </select>
+            </div>
+            <div class="mb-3">
                 <img style="height:100px" src="{{ Storage::url($book->image) }}" alt="">
                 <label for="formFile" class="form-label">Immagine Cover Attuale</label>
                 <input class="form-control" type="file" id="formFile" name="image" value="{{ $book->image }}">

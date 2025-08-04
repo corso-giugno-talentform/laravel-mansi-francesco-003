@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class BookController extends Controller
+class BookController extends Controller implements HasMiddleware
 {
+
+    public static function middleware(): array
+    {
+        return [
+            // new Middleware('auth', only: ['destroy', 'update']), //Esempio middleware dentro controller
+        ];
+    }
     public function index()
     {
         $books = Book::all();
@@ -19,7 +29,8 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('books.create');
+        $authors = Author::all();
+        return view('books.create', compact('authors'));
     }
 
     public function store(StoreBookRequest $request)
@@ -36,6 +47,7 @@ class BookController extends Controller
             'name' => $request->name,
             'year' => $request->year,
             'page' => $request->page,
+            'author_id' => $request->author_id,
             'image' => $request->file('image')->store('cover', 'public')
         ]);
         // Book::create($data);
@@ -45,16 +57,22 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
+
+        // $author = Author::find($book->author_id);
+        // dd($author->firstname);
         return view('books.show', compact('book'));
     }
 
     public function edit(Book $book)
     {
-        return view('books.edit', compact('book'));
+        $authors = Author::all();
+        return view('books.edit', compact('book', 'authors'));
     }
 
     public function update(Book $book, UpdateBookRequest $request)
     {
+
+
         $image = $book->image;
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('cover', 'public');
@@ -63,6 +81,7 @@ class BookController extends Controller
             'name' => $request->name,
             'year' => $request->year,
             'page' => $request->page,
+            'author_id' => $request->author_id,
             'image' => $image
         ]);
 
