@@ -21,7 +21,7 @@ class BookController extends Controller implements HasMiddleware
     }
     public function index()
     {
-        $books = Book::all();
+        $books = Book::simplePaginate(4);
 
         return view('books.index', compact('books'));
         //return view('welcome', ['books' => $books]);

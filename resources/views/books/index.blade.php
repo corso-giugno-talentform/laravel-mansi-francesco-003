@@ -84,6 +84,8 @@
 
                  </tbody>
              </table>
+             {{-- https://laravel.com/docs/12.x/pagination#customizing-the-pagination-view --}}
+             {{ $books->links() }}
          </div>
      </div>
  </x-layout>
