@@ -88,8 +88,11 @@ class BookController extends Controller implements HasMiddleware
             'author_id' => $request->author_id,
             'image' => $image
         ]);
-        $book->categories()->detach();
-        $book->categories()->attach($request->categories);
+        $book->categories()->sync($request->categories);
+        // $book->categories()->detach();
+        // $book->categories()->attach($request->categories);
+
+
 
         return redirect()->route('books.index')->with('success', 'Elemento modificato!');
     }
