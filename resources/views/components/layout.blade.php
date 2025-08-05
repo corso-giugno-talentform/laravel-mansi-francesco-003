@@ -26,6 +26,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('books.index') }}">Gestione Libri</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('authors.index') }}">Gestione Autori</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('categories.index') }}">Gestione Categorie</a>
+                    </li>
                     @guest
 
                         <li class="nav-item">
