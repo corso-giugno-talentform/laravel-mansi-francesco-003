@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -30,7 +31,9 @@ class BookController extends Controller implements HasMiddleware
     public function create()
     {
         $authors = Author::all();
-        return view('books.create', compact('authors'));
+        $categories = Category::all();
+
+        return view('books.create', compact('authors', 'categories'));
     }
 
     public function store(StoreBookRequest $request)
@@ -43,7 +46,7 @@ class BookController extends Controller implements HasMiddleware
         //     'page' => $request->page,
         // ];
 
-        Book::create([
+        $book = Book::create([
             'name' => $request->name,
             'year' => $request->year,
             'page' => $request->page,
@@ -51,7 +54,7 @@ class BookController extends Controller implements HasMiddleware
             'image' => $request->file('image')->store('cover', 'public')
         ]);
         // Book::create($data);
-
+        $book->categories()->attach($request->categories);
         return redirect()->route('books.index')->with('success', 'Elemento inserito!');
     }
 
@@ -66,7 +69,8 @@ class BookController extends Controller implements HasMiddleware
     public function edit(Book $book)
     {
         $authors = Author::all();
-        return view('books.edit', compact('book', 'authors'));
+        $categories = Category::all();
+        return view('books.edit', compact('book', 'authors', 'categories'));
     }
 
     public function update(Book $book, UpdateBookRequest $request)
@@ -84,12 +88,15 @@ class BookController extends Controller implements HasMiddleware
             'author_id' => $request->author_id,
             'image' => $image
         ]);
+        $book->categories()->detach();
+        $book->categories()->attach($request->categories);
 
         return redirect()->route('books.index')->with('success', 'Elemento modificato!');
     }
 
     public function destroy(Book $book)
     {
+        $book->categories()->detach();
         $book->delete();
         return redirect()->route('books.index')->with('success', 'Elemento cancellato!');
     }
