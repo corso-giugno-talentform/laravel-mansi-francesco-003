@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // id=1, name= 'fantasy' parent_id=null
-        // id=2, name= 'magia' parent_id=1
-        // id=5, name= 'magia nera' parent_id=2
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('books', function (Blueprint $table) {
+            $table->string('test')->nullable();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::table('books', function (Blueprint $table) {
+            //
+        });
     }
 };

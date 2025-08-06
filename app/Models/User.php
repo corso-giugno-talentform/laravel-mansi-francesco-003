@@ -47,7 +47,6 @@ class User extends Authenticatable
         ];
     }
 
-
     // public function checkIfAdmin()
     // {
     //     if ($this->email == 'admin@ciao.it') {

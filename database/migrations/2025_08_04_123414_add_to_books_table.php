@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->unsignedBigInteger('author_id')->nullable(); ///mi crei la colonna fisica
+            $table->unsignedBigInteger('author_id')->nullable(); // /mi crei la colonna fisica
             $table->foreign('author_id')->references('id')->on('authors');
         });
     }

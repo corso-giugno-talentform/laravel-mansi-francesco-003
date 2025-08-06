@@ -11,7 +11,7 @@ class StoreBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; //ricordiamoci di tronare
+        return true; // ricordiamoci di tronare
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreBookRequest extends FormRequest
         return [
             'name' => ['required', 'max:150', 'string'],
             'year' => ['integer'],
-            'page' => ['nullable', 'integer']
+            'page' => ['nullable', 'integer'],
         ];
     }
 
@@ -33,7 +33,7 @@ class StoreBookRequest extends FormRequest
         return [
             'name.required' => 'AOho manca il dato.',
             'name.max' => 'Troppi caratteri',
-            'year.integer' => 'scrivi un numero'
+            'year.integer' => 'scrivi un numero',
         ];
     }
 }

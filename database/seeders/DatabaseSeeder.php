@@ -15,15 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //https://fakerphp.org/
+        // https://fakerphp.org/
         User::factory()->create([
             'name' => 'Francesco',
-            'password' => Hash::make('*&Oppassword'),
             'email' => 'fra.mansi@gmail.com',
             'is_admin' => true,
         ]);
 
-        User::factory(100)->create();
+        //User::factory(100)->create();
         Book::factory(1000)->create();
     }
 }

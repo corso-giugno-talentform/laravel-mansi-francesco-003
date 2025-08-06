@@ -15,11 +15,13 @@ class BookFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    { //['name', 'year', 'page', 'image', 'author_id']
+    { // ['name', 'year', 'page', 'image', 'author_id']
         return [
-            'name' =>   fake()->name(),
-            'year' =>   fake()->numberBetween(0, 2025),
-            'page' =>   fake()->numberBetween(100, 1000),
+            'name' => fake()->name(),
+            'description' => fake()->paragraph(2),
+            'year' => fake()->numberBetween(0, 2025),
+            'page' => fake()->numberBetween(100, 1000),
+
         ];
     }
 }

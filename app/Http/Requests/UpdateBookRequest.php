@@ -12,7 +12,7 @@ class UpdateBookRequest extends FormRequest
     public function authorize(): bool
     {
 
-        //auth()->user()->is_admin;
+        // auth()->user()->is_admin;
         return true;
     }
 
@@ -26,7 +26,7 @@ class UpdateBookRequest extends FormRequest
         return [
             'name' => ['required', 'max:150', 'string'],
             'year' => ['integer'],
-            'page' => ['nullable', 'integer']
+            'page' => ['nullable', 'integer'],
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -11,6 +10,7 @@ class PageController extends Controller
     {
 
         $books = Book::latest()->take(3)->get();
+
         return view('pages.homepage', compact('books'));
     }
 }

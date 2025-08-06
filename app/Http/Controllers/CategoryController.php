@@ -35,7 +35,6 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-
         return redirect()->route('categories.index')->with('success', 'Elemento inserito!');
     }
 
@@ -63,6 +62,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
         ]);
+
         return redirect()->route('categories.index')->with('success', 'Elemento modificato!');
     }
 
@@ -72,6 +72,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return redirect()->route('categories.index')->with('success', 'Elemento cancellato!');
     }
 }
