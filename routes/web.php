@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 // / => homepage
@@ -26,3 +27,6 @@ Route::delete('/libri/{book}/elimina', [BookController::class, 'destroy'])->name
 
 Route::resource('authors', AuthorController::class);
 Route::resource('categories', CategoryController::class);
+
+
+Route::resource('tags', TagController::class);

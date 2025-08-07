@@ -21,20 +21,19 @@ class BookController extends Controller implements HasMiddleware
 
     public function index()
     {
+        // // dd(request()->search);
+        // if (request()->search) {
+        //     // $books = Book::where('name', 'LIKE', '%' . request()->search . '%')
+        //     //     ->orWhere('page', 'LIKE', '%' . request()->search . '%')
+        //     //     ->orWhere('year', 'LIKE', '%' . request()->search . '%')
+        //     //     ->orWhere('description', 'LIKE', '%' . request()->search . '%')
+        //     //     ->get();
+        //     $books = Book::search(request()->search)->get();
+        // } else {
+        //     $books = Book::all();
+        // }
 
-        // dd(request()->search);
-        if (request()->search) {
-            // $books = Book::where('name', 'LIKE', '%' . request()->search . '%')
-            //     ->orWhere('page', 'LIKE', '%' . request()->search . '%')
-            //     ->orWhere('year', 'LIKE', '%' . request()->search . '%')
-            //     ->orWhere('description', 'LIKE', '%' . request()->search . '%')
-            //     ->get();
-            $books = Book::search(request()->search)->get();
-        } else {
-            $books = Book::all();
-        }
-
-        return view('books.index', compact('books'));
+        return view('books.index');
         // return view('welcome', ['books' => $books]);
     }
 
