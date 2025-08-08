@@ -11,7 +11,6 @@
                     class="form-control @error('name') is-invalid    @enderror" id="inputName">
             </div>
 
-
             <button wire:click="store" type="button" class="btn btn-primary">Salva</button>
         </form>
     </div>

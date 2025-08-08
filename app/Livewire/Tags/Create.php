@@ -13,6 +13,7 @@ class Create extends Component
 
     public function store()
     {
+        $this->validate();
         Tag::create([
             'name' => $this->name,
         ]);

@@ -29,4 +29,9 @@ Route::resource('authors', AuthorController::class);
 Route::resource('categories', CategoryController::class);
 
 
-Route::resource('tags', TagController::class);
+
+//Route::view('/tags', 'tags.index');
+
+Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+Route::get('/tags/crea-tag', [TagController::class, 'create'])->name('tags.create');
+Route::get('/tags/{tag}/modifica', [TagController::class, 'edit'])->name('tags.edit');
